@@ -5,9 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest -- --watch",
-    "test:staged": "jest -- --findRelatedTests",
-    "test:ci": "jest -- --coverage"
+    "test:watch": "jest --watch",
+    "test:staged": "jest --findRelatedTests",
+    "test:ci": "jest --coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:ci"
+    }
   },
   "keywords": [],
   "author": "",
