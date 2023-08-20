@@ -12,6 +12,13 @@
   - [ ] [Commit Lint]( https://commitlint.js.org/#/)
   
 - [ ] [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+  - [ ] [LAYERS]
+    - [ ] [Domain] () 
+    - [ ] [Data] () 
+    - [ ] [Infra] () 
+    - [ ] [Presentation] () 
+    - [ ] [Validation] () 
+    - [ ] [Main] () 
   - [ ] [SOLID](https://en.wikipedia.org/wiki/SOLID)
     - [ ] [Single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)
     - [ ] [Open–closed principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle)
