@@ -1,7 +1,4 @@
-import { AuthenticationParams } from '@/domain/usecases/authentication';
-import { HttpPostClient, HttpPostParams } from '../protocols/http/http-post-client';
-import { HttpResponse, HttpStatusCode } from '../protocols/http/httpResponse';
-import { AccountModel } from '@/domain/models/account-model';
+import { HttpPostClient, HttpPostParams, HttpResponse, HttpStatusCode } from '../protocols/http';
 
 export class HttpPostClientSpy<T,R> implements HttpPostClient<T, R> {
   url?: string;
