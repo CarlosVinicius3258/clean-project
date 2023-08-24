@@ -1,13 +1,10 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es6",
     "allowJs": true,
-    "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["src/*"]
     },

@@ -2,10 +2,10 @@
 module.exports = {
   preset: 'ts-jest',
   roots: ['<rootDir>/src'],
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}'],
   transform: {
-    '.+\\.ts?$': 'ts-jest',
+    '.+\\.{ts|tsx}?$': 'ts-jest',
   },
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
