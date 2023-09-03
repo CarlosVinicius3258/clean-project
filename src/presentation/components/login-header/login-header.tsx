@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import Styles from './login-header-styles.module.scss';
-import Logo from '../logo/logo';
+import { Logo } from '../../components';
 interface LoginHeaderProps extends React.HTMLAttributes<HTMLElement> { }
 
 const LoginHeader: React.FC<LoginHeaderProps> = (props) => {
