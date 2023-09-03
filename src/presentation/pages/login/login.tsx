@@ -5,6 +5,7 @@ import Logo from '@/presentation/components/logo/logo';
 import LoginHeader from '@/presentation/components/login-header/login-header';
 import Footer from '@/presentation/components/footer/footer';
 import Input from '@/presentation/components/input/input';
+import FormStatus from '@/presentation/components/form-status/form-status';
 
 const Login: React.FC = () => {
   return <div className={ Styles.login }>
@@ -14,16 +15,9 @@ const Login: React.FC = () => {
       <Input type="email" name="email" placeholder='Digite seu email' />
       <Input type="password" name="password" placeholder='Digite sua senha' />
 
-
-
       <button className={ Styles.submitButton } type="submit">Entrar</button>
       <span className={ Styles.createAccountLink }>Criar conta</span>
-      <div className={ Styles.errorWrap }>
-        <Spinner className={ Styles.spinner } />
-        <span className={ Styles.error }>
-          Erro
-        </span>
-      </div>
+      <FormStatus />
     </form>
     <Footer />
   </div>;
