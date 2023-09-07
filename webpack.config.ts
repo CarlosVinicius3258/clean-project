@@ -4,9 +4,11 @@ module.exports = {
   mode: 'development',
   entry: './src/main/index.tsx',
   devtool: 'source-map',
+
   devServer: {
     static: './dist',
     port: 8080,
+    historyApiFallback: true,
   },
   module: {
     rules: [

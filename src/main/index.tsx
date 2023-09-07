@@ -1,12 +1,12 @@
 import React from 'react';
-import { Login } from '@/presentation/pages/';
 import { createRoot } from "react-dom/client";
-
+import { Router } from '@/presentation/components';
+import '@/presentation/styles/globals.scss';
 const root = createRoot(document.getElementById('main'));
 
 
 root.render(
   <>
-    <Login />
+    <Router />
   </>
 );
