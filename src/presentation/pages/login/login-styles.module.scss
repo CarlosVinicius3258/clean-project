@@ -40,6 +40,11 @@ button {
 
     .submitButton {
       margin-top: 32px;
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
     }
     .createAccountLink {
       text-align: center;
