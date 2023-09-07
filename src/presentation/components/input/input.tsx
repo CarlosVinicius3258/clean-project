@@ -5,9 +5,14 @@ interface InputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<H
 }
 
 const Input: React.FC<InputProps> = (props) => {
+
+  const enableInput = (event: React.FocusEvent<HTMLInputElement>): void => {
+    event.target.readOnly = false;
+  };
+
   return (
     <div className={ Styles.inputWrap }>
-      <input { ...props } />
+      <input readOnly onFocus={ enableInput } { ...props } />
       <span className={ Styles.status }>🔴</span>
     </div>
   );
