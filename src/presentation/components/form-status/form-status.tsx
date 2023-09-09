@@ -6,14 +6,14 @@ interface FormStatusProps extends React.DetailedHTMLProps<React.HTMLAttributes<H
 
 const FormStatus: React.FC<FormStatusProps> = (props) => {
 
-  const { state, errorState } = useContext(Context);
-  const { isLoading } = state;
+  const { state } = useContext(Context);
+  const { isLoading, mainError } = state;
 
   return (
     <div data-testid='error-wrap' className={ Styles.errorWrap }>
       { isLoading && <Spinner className={ Styles.spinner } /> }
       {
-        errorState.main && <span className={ Styles.error }>{ errorState.main }</span>
+        mainError && <span className={ Styles.error }>{ mainError }</span>
       }
     </div>
   );
