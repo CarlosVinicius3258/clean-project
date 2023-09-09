@@ -13,12 +13,11 @@ const Input: React.FC<InputProps> = (props) => {
   };
 
   const getStatus = (): string => {
-    return '🔴';
+    return error ? '🔴' : '🟢';
   };
 
   const getTitle = (): string => {
-    console.log('title', error, value);
-    return error;
+    return error || 'Tudo certo!';
   };
 
   const handleChange = (event: React.FocusEvent<HTMLInputElement>) => {
