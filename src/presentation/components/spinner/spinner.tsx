@@ -6,7 +6,7 @@ interface SpinnerProps extends React.HTMLAttributes<HTMLElement> { }
 
 const Spinner: React.FC<SpinnerProps> = (props) => {
   return (
-    <PulseLoader color={ '#BC477B' } className={ [Styles.loadingSpinner, props.className].join(' ') } />
+    <PulseLoader data-testid='spinner' color={ '#BC477B' } className={ [Styles.loadingSpinner, props.className].join(' ') } />
   );
 };
 
