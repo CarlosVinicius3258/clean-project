@@ -3,12 +3,14 @@ import Styles from './login-styles.module.scss';
 import { Footer, Input, FormStatus, LoginHeader } from '../../components';
 import Context from '@/presentation/context/form/form-context';
 import { Validation } from '@/presentation/protocols/validation';
+import { Authentication } from '@/domain/usecases';
 
 type LoginProps = {
   validation: Validation;
+  authentication: Authentication;
 };
 
-const Login: React.FC<LoginProps> = ({ validation }) => {
+const Login: React.FC<LoginProps> = ({ validation, authentication }) => {
   const [state, setState] = useState({
     isLoading: false,
     errorMessage: '',
@@ -33,9 +35,13 @@ const Login: React.FC<LoginProps> = ({ validation }) => {
 
 
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
     setState({ ...state, isLoading: true });
+    await authentication.auth({
+      email: state.email,
+      password: state.password
+    });
   };
   return <div className={ Styles.login }>
     <LoginHeader />
