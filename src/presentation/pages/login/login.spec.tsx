@@ -6,16 +6,18 @@ import { faker } from '@faker-js/faker';
 
 type SutTypes = {
   sut: RenderResult;
-  validationStub: ValidationStub;
 };
 
-const makeSut = (): SutTypes => {
+type SutParams = {
+  validationError: string | null;
+};
+
+const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub();
-  validationStub.errorMessage = faker.word.sample();
+  validationStub.errorMessage = params?.validationError;
   const sut = render(<Login validation={ validationStub } />);
   return {
     sut,
-    validationStub
   };
 };
 
@@ -29,7 +31,9 @@ describe('Login Component', () => {
     expect(errorWrap.childElementCount).toBe(0);
   });
   test('Should start with initial state', () => {
-    const { sut, validationStub } = makeSut();
+    const errorMessage = faker.word.sample();
+    const { sut } = makeSut({ validationError: errorMessage });
+
     const errorWrap = sut.getByTestId('error-wrap');
     expect(errorWrap.childElementCount).toBe(0);
 
@@ -37,19 +41,19 @@ describe('Login Component', () => {
     expect(submitButton.disabled).toBe(true);
 
     const emailStatus = sut.getByTestId('email-status');
-    expect(emailStatus.title).toBe(validationStub.errorMessage);
+    expect(emailStatus.title).toBe(errorMessage);
     expect(emailStatus.textContent).toBe('🔴');
 
     const passwordStatus = sut.getByTestId('password-status');
-    expect(passwordStatus.title).toBe(validationStub.errorMessage);
+    expect(passwordStatus.title).toBe(errorMessage);
     expect(passwordStatus.textContent).toBe('🔴');
   });
 
 
   test('Should show email error if Validation fails', () => {
-    const { sut, validationStub } = makeSut();
     const errorMessage = faker.word.sample();
-    validationStub.errorMessage = errorMessage;
+
+    const { sut } = makeSut({ validationError: errorMessage });
     const emailInput = sut.getByTestId('email');
     const fakeremail = faker.internet.email();
 
@@ -61,9 +65,8 @@ describe('Login Component', () => {
   });
 
   test('Should show password error if Validation fails', () => {
-    const { sut, validationStub } = makeSut();
     const errorMessage = faker.word.sample();
-    validationStub.errorMessage = errorMessage;
+    const { sut } = makeSut({ validationError: errorMessage });
     const passwordInput = sut.getByTestId('password');
     const fakerpassword = faker.internet.password();
 
@@ -75,8 +78,7 @@ describe('Login Component', () => {
   });
 
   test('Should show valid email state if Validation succeeds', () => {
-    const { sut, validationStub } = makeSut();
-    validationStub.errorMessage = null;
+    const { sut } = makeSut();
     const emailInput = sut.getByTestId('email');
     const fakeremail = faker.internet.email();
 
@@ -88,8 +90,7 @@ describe('Login Component', () => {
   });
 
   test('Should show valid password state if Validation succeeds', () => {
-    const { sut, validationStub } = makeSut();
-    validationStub.errorMessage = null;
+    const { sut } = makeSut();
     const passwordInput = sut.getByTestId('password');
     const fakerpassword = faker.internet.password();
 
@@ -101,8 +102,8 @@ describe('Login Component', () => {
   });
 
   test('Should enable submit button if form is valid', () => {
-    const { sut, validationStub } = makeSut();
-    validationStub.errorMessage = null;
+    const { sut } = makeSut();
+
     const passwordInput = sut.getByTestId('password');
     const fakerpassword = faker.internet.password();
     fireEvent.input(passwordInput, { target: { value: fakerpassword } });
