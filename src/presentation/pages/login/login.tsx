@@ -42,10 +42,11 @@ const Login: React.FC<LoginProps> = ({ validation, authentication }) => {
         return;
       }
       setState({ ...state, isLoading: true });
-      await authentication.auth({
+      const account = await authentication.auth({
         email: state.email,
         password: state.password
       });
+      localStorage.setItem('accessToken', account.accesstoken);
     } catch (error) {
       setState({ ...state, isLoading: false, mainError: error.message });
     }
@@ -55,7 +56,7 @@ const Login: React.FC<LoginProps> = ({ validation, authentication }) => {
     <LoginHeader />
 
     <Context.Provider value={ { state, setState } }>
-      <form className={ Styles.form } onSubmit={ handleSubmit }>
+      <form data-testid='form' className={ Styles.form } onSubmit={ handleSubmit }>
         <h2>Login</h2>
         <Input type="email" name="email" placeholder='Digite seu email' />
         <Input type="password" name="password" placeholder='Digite sua senha' />
